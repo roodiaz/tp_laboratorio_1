@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1553745106 source:/home/rocio/Desktop/tp_laboratorio_1/Calculadora/funcionesDiaz.c
+	<stdio.h>
+	<stdlib.h>
+
+1553744613 source:/home/rocio/Desktop/tp_laboratorio_1/Calculadora/main.c
+	<stdio.h>
+	<stdlib.h>
+	"funcionesDiaz.h"
+
+1553745126 /home/rocio/Desktop/tp_laboratorio_1/Calculadora/funcionesDiaz.h
+

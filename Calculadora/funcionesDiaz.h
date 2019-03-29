@@ -1,7 +1,10 @@
 
 
-float sumarDosNumeros(float, float);
-float restarDosNumeros(float, float);
-float multiplicarDosNumeros(float, float);
-float dividirDosNumeros(float, float);
+int sumarDosNumeros(int, int);
+int restarDosNumeros(int, int);
+int multiplicarDosNumeros(int, int);
+float dividirDosNumeros(int, int);
 int factorial(int);
+int menuOpciones();
+
+

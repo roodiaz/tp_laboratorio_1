@@ -8,10 +8,10 @@ int main()
     int i = 0;
     int flag1 = 0;
     int flag2 = 0;
+    int flag3 = 0;
     int num1;
     int num2;
     int opcion;
-
 
     do
     {
@@ -80,11 +80,12 @@ int main()
                 }
                 else
                 {
-                    printf("a- Calcular la suma de (%d + %d)\n",num1,num2);
+                    printf("\na- Calcular la suma de (%d + %d)\n",num1,num2);
                     printf("b- Calcular la resta de (%d - %d)\n",num1,num2);
                     printf("c- Calcular la division de (%d / %d)\n",num1,num2);
                     printf("d- Calcular la  multiplicacion de (%d * %d)\n",num1,num2);
                     printf("e- Calcular el factorial de (!%d) y (!%d)\n",num1,num2);
+                    flag3 = 1;
                 }
             break;
             case 4:
@@ -92,9 +93,14 @@ int main()
                 {
                     printf("\nNo es posible mostrar los resultados. Falta ingresar uno o ambos numeros.\n");
                 }
+                    else if(flag3 == 0)
+                {
+                        printf("\nNo es posible mostrar los resultados. Falta realizar las operaciones (opcion 3).");
+                }
+
                 else
                 {
-                    printf("a- El resultado de %d + %d es: %d\n",num1, num2, sumarDosNumeros(num1, num2));
+                    printf("\na- El resultado de %d + %d es: %d\n",num1, num2, sumarDosNumeros(num1, num2));
                     printf("b- El resultado de %d - %d es: %d\n",num1, num2, restarDosNumeros(num1, num2));
                     printf("c- El resultado de %d / %d es: %f\n",num1, num2, dividirDosNumeros(num1, num2));
                     printf("d- El resultado de %d * %d es: %d\n",num1, num2, multiplicarDosNumeros(num1, num2));

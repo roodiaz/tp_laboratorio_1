@@ -57,7 +57,6 @@ int factorial (int x)
         x = x * factorial(x-1);
     }
 
-
     return x;
 }
 

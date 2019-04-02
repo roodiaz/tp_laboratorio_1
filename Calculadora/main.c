@@ -4,7 +4,7 @@
 
 int main()
 {
-    char seguir = 's';
+    char salir = 'n';
     int i = 0;
     int flag1 = 0;
     int flag2 = 0;
@@ -18,7 +18,7 @@ int main()
 
      if(flag1 == 0 && flag2 == 0)
    {
-    printf("\n\n *** Menu de opciones *** \n\n");
+    printf("\n *** Menu de opciones *** \n\n");
     printf("1- Ingresar 1er operando (A = x).\n");
     printf("2- Ingresar 2do operando (B = y).\n");
     printf("3- Calcular todas las operaciones.\n");
@@ -64,14 +64,16 @@ int main()
         switch(opcion)
         {
             case 1:
-                printf("\nIngresar primer numero: ");
+                printf("\n>>>>Ingresar primer numero: ");
                 scanf("%d",&num1);
                 flag1 = 1;
+                system("pause");
             break;
             case 2:
-                printf("\nIngresar segundo numero: ");
+                printf("\n>>>>>Ingresar segundo numero: ");
                 scanf("%d",&num2);
                 flag2 = 1;
+                system("pause");
             break;
             case 3:
                 if(flag1 == 0 || flag2 == 0)
@@ -86,6 +88,7 @@ int main()
                     printf("d- Calcular la  multiplicacion de (%d * %d)\n",num1,num2);
                     printf("e- Calcular el factorial de (!%d) y (!%d)\n",num1,num2);
                     flag3 = 1;
+                    system("pause");
                 }
             break;
             case 4:
@@ -105,22 +108,22 @@ int main()
                     printf("c- El resultado de %d / %d es: %f\n",num1, num2, dividirDosNumeros(num1, num2));
                     printf("d- El resultado de %d * %d es: %d\n",num1, num2, multiplicarDosNumeros(num1, num2));
                     printf("e- El factorial de !%d es: %d y el factorial de !%d es: %d\n",num1, factorial(num1), num2, factorial(num2));
+                    system("pause");
                 }
 
             break;
             case 5:
-                    printf("\nDesea seguir? s / n: ");
-                    scanf(" %c",&seguir);
+                    printf("\n>>>>Desea salir? s / n: ");
+                    scanf(" %c",&salir);
             break;
 
         }
 
         i++;
 
-    } while ( seguir == 's');
+    } while ( salir == 'n');
 
 
 
     return 0;
 }
-

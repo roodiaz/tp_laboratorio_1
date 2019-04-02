@@ -1,4 +1,3 @@
-
 /** \brief Realizar la suma de dos numeros
  *
  * \param Primer numero a sumar
@@ -52,7 +51,3 @@ int factorial(int);
  * \return Opcion elegida
  *
  */
-
-int menuOpciones();
-
-

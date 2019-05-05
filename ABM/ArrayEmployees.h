@@ -65,5 +65,23 @@ void altaEmpleado(eEmpleado vec[], int tam);
  * \return Nada
  *
  */
-
 void mostrarEmpleado(eEmpleado empleado);
+
+
+/** \brief Opciones para dar de baja un empleado
+ *
+ * \param Estructura de empleados
+ * \return Nada
+ *
+ */
+ void bajaEmpleado(eEmpleado vec[], int tam);
+
+ /** \brief Permite la modifacion de datos de empleados
+  *
+  * \param Ingresar vector
+  * \param Ingresar tamaño del vector
+  * \return Nada
+  *
+  */
+  void modificacionEmpleado(eEmpleado vec[], int tam);
+

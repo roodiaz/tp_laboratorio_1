@@ -378,39 +378,37 @@ void ordenarEmpleados(eEmpleado vec[], int tam)
     {
         for(int j=i+1; j<tam; j++)
         {
-            if(vec[i].sector>vec[j].sector)
+            if(vec[i].sector>vec[j].sector && vec[i].ocupado == 1 && vec[j].ocupado==1)
             {
                 aux=vec[i];
                 vec[i]=vec[j];
                 vec[j]=aux;
             }
         }
-    }
 
-    for(int i=0; i<tam-1; i++)
-    {
-        for(int j=i+1; j<tam; j++)
-        {
-           if(vec[i].sector>vec[j].sector && stricmp(vec[i].nombre, vec[j].nombre)==0)
-           {
-               if(strcmpi(vec[i].apellido, vec[j].apellido)==1)
-               {
-                    aux=vec[i];
-                    vec[i]=vec[j];
-                    vec[j]=aux;
-               }
-           }
-        }
+         for(int i=0; i<tam-1; i++)
+            {
+                for(int j=i+1; j<tam; j++)
+                {
+                    if(vec[i].sector==vec[j].sector && vec[i].apellido>vec[j].apellido)
+                    {
+                        aux=vec[i];
+                        vec[i]=vec[j];
+                        vec[j]=aux;
+                    }
+                }
+            }
     }
 }
 
 void informacionEmpleados(eEmpleado vec[], int tam)
 {
     int opcion;
-    int contSueldo=0;
+    int contSueldos=0;
     int contEmpleados=0;
-    float acumuladorSueldo=0;
-    float promedioSueldo;
+    float totalSueldos=0;
+    float promedioSueldos;
+
 
     do
     {
@@ -436,24 +434,24 @@ void informacionEmpleados(eEmpleado vec[], int tam)
                 {
                     if(vec[i].ocupado==1)
                     {
-                        acumuladorSueldo+=vec[i].sueldo;
-                        contSueldo++;
+                        totalSueldos+=vec[i].sueldo;
+                        contSueldos++;
                     }
                 }
 
-                promedioSueldo=acumuladorSueldo/contSueldo;
+                promedioSueldos=(float)totalSueldos/contSueldos;
 
                 for(int i=0; i<tam; i++)
                 {
-                    if(vec[i].ocupado==1 && vec[i].sueldo>promedioSueldo)
+                    if(vec[i].ocupado==1 && vec[i].sueldo>promedioSueldos)
                     {
                         contEmpleados++;
                     }
                 }
 
-                printf("\nEl total de los salarios es de %.2f",acumuladorSueldo);
-                printf("\nEl promedio de los sueldos es de: %.2f",promedioSueldo);
-                printf("\nEl total de empleados que superan el sueldo promedio es de: %d\n\n",contSueldo);
+                printf("\nEl total de los salarios es de %.2f",totalSueldos);
+                printf("\nEl promedio de los sueldos es de: %.2f",promedioSueldos);
+                printf("\nEl total de empleados que superan el sueldo promedio es de: %d\n\n",contEmpleados);
                 system("pause");
 
             break;

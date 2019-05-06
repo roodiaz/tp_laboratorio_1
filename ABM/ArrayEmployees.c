@@ -16,8 +16,6 @@ int menuABM()
     printf("   2. Modificar.\n");
     printf("   3. Bajas.\n");
     printf("   4. Informar.\n\n");
-    printf("      a. Listado de los empleados ordenados alfabéticamente por Apellido y Sector.\n");
-    printf("      b. Total y promedio de los salarios, y cuántos empleados superan el salario promedio.\n\n");
     printf("   5. Salir.\n\n");
     printf(">> Ingresar opcion: ");
     scanf("%d",&opcion);
@@ -27,7 +25,7 @@ int menuABM()
 
 void mostrarEmpleado(eEmpleado empleado)
 {
-    printf("\n%d  %10s  %10s   %.2f    %d\n", empleado.id, empleado.nombre, empleado.apellido, empleado.sueldo, empleado.sector);
+    printf("%5d  %10s  %10s  %11.2f  %7d\n", empleado.id, empleado.nombre, empleado.apellido, empleado.sueldo, empleado.sector);
 }
 
 void mostrarEmpleados(eEmpleado vec[], int tam)
@@ -36,7 +34,8 @@ void mostrarEmpleados(eEmpleado vec[], int tam)
 
     system("cls");
 
-    printf("   ID        Nombre     Apellido    Sueldo    Sector\n\n");
+    printf("  ID      Nombre     Apellido      Sueldo    Sector\n");
+    printf(" ----    --------   ----------    --------   ------\n\n");
 
     for(int i=0; i < tam; i++)
     {
@@ -202,7 +201,6 @@ void bajaEmpleado(eEmpleado vec[], int tam)
     }
     else
     {
-        mostrarEmpleado (vec[indice]);
 
         printf ("\nDesea dar de baja al empleado? s/n: ");
         fflush(stdin);
@@ -221,8 +219,255 @@ void bajaEmpleado(eEmpleado vec[], int tam)
         }
         else
         {
-            printf ("\nSe ha cancelado la operacion.\n\n" );
+            printf ("\n\nSe ha cancelado la operacion.\n\n" );
             system("pause");
         }
     }
 }
+
+void modificacionEmpleado(eEmpleado vec[], int tam)
+{
+
+    int id;
+    int nuevoSector;
+    int indice;
+    int opcion;
+    float nuevoSueldo;
+    char confirma;
+    char nuevoNombre[51];
+    char nuevoApellido[51];
+    char auxChar[100];
+
+    printf("Ingrese id: ");
+    scanf("%d", &id);
+
+    indice = buscarEmpleado(vec, tam, id);
+
+    if(indice == -1)
+    {
+        printf ("\nEl id %d no esta registrado en el sistema\n\n", id);
+        system("pause");
+    }
+    else
+    {
+        mostrarEmpleado(vec[indice]);
+
+        printf("\nDesea modificar empleado? s/n: ");
+        fflush(stdin);
+        confirma = tolower(getche());
+
+        if(confirma == 's')
+        {
+            system("cls");
+            printf(">>>> Ingrese opcion que desee modificar <<<<\n\n");
+
+            printf("  1_ Nombre.\n");
+            printf("  2_ Apellido.\n");
+            printf("  3_ Salario.\n");
+            printf("  4_ Sector.\n");
+            printf("  5_ Atras.\n");
+            printf("\n\nOpcion: ");
+            scanf("%d",&opcion);
+        }
+        else
+        {
+            printf("No se ha realizado ninguna modificacion.\n");
+            system("pause");
+        }
+
+        switch(opcion)
+        {
+            case 1:
+                printf("\nIngresar nuevo nombre: ");
+                fflush(stdin);
+                scanf("%s", nuevoNombre);
+
+                while(strlen(auxChar)>50)
+                {
+                    printf("Error. Ingresar nombre del empleado: ");
+                    gets(auxChar);
+                }
+
+                strlwr(auxChar);
+                auxChar[0] = toupper(auxChar[0]);
+                strcpy(nuevoNombre, auxChar);
+                strcpy(vec[indice].nombre, nuevoNombre);
+
+                printf("\nModificacion realizada con exito.\n\n");
+                system("pause");
+            break;
+
+            case 2:
+                printf("\nIngresar nuevo apellido: ");
+                fflush(stdin);
+                gets(auxChar);
+
+                while(strlen(auxChar)>50)
+                {
+                    printf("\nError. Ingresar apellido del empleado: ");
+                    gets(auxChar);
+                }
+
+                strlwr(auxChar);
+                auxChar[0] = toupper(auxChar[0]);
+                strcpy(nuevoApellido, auxChar);
+                strcpy(vec[indice].apellido, nuevoApellido);
+
+                printf("\nModificacion realizada con exito.\n\n");
+                system("pause");
+            break;
+
+            case 3:
+                printf("\nIngrese nuevo sueldo: ");
+                scanf("%f", &nuevoSueldo );
+
+                while(strlen(auxChar)>50)
+                {
+                    printf("\nError. Ingrese sueldo mayor a 0: ");
+                    scanf("%f", &nuevoSueldo );
+                }
+
+                vec[indice].sueldo = nuevoSueldo;
+
+                printf("\nModificacion realizada con exito.\n\n");
+                system("pause");
+            break;
+
+            case 4:
+                system("cls");
+                printf("\n** Sectores **\n");
+                printf("1. RRHH\n");
+                printf("2. Sistemas\n");
+                printf("3. Legales\n");
+                printf("4. Ventas\n");
+                printf("5. Compras\n\n");
+                printf("\nIngrese numero de nuevo sector: ");
+                scanf("%d",&nuevoSector);
+
+                while(nuevoSector < 1 || nuevoSector > 5)
+                {
+                    printf("\nError. Ingrese un sector valido: ");
+                    scanf("%d",&nuevoSector);
+                }
+
+                vec[indice].sector = nuevoSector;
+
+                printf("\nModificacion realizada con exito.\n\n");
+                system("pause");
+            break;
+
+            case 5:
+                menuABM();
+            break;
+
+            default:
+                if(opcion > 6 || opcion < 0)
+                {
+                    printf("\nIngrese opcion valida: ");
+                    scanf("%d",&opcion);
+                }
+        }
+    }
+}
+
+void ordenarEmpleados(eEmpleado vec[], int tam)
+{
+    eEmpleado aux;
+
+    for(int i=0; i<tam-1; i++)
+    {
+        for(int j=i+1; j<tam; j++)
+        {
+            if(vec[i].sector>vec[j].sector)
+            {
+                aux=vec[i];
+                vec[i]=vec[j];
+                vec[j]=aux;
+            }
+        }
+    }
+
+    for(int i=0; i<tam-1; i++)
+    {
+        for(int j=i+1; j<tam; j++)
+        {
+           if(vec[i].sector>vec[j].sector && stricmp(vec[i].nombre, vec[j].nombre)==0)
+           {
+               if(strcmpi(vec[i].apellido, vec[j].apellido)==1)
+               {
+                    aux=vec[i];
+                    vec[i]=vec[j];
+                    vec[j]=aux;
+               }
+           }
+        }
+    }
+}
+
+void informacionEmpleados(eEmpleado vec[], int tam)
+{
+    int opcion;
+    int contSueldo=0;
+    int contEmpleados=0;
+    float acumuladorSueldo=0;
+    float promedioSueldo;
+
+    do
+    {
+        system("cls");
+        printf("**** Infomes ****\n\n");
+        printf("1. Listado de los empleados ordenados alfabeticamente por Apellido y Sector.\n");
+        printf("2. Total y promedio de los salarios, y cuantos empleados superan el salario promedio.\n\n");
+        printf("3. Volver al menu principal\n\n");
+        printf(">>> Ingrese opcion: ");
+        scanf("%d",&opcion);
+
+        switch(opcion)
+        {
+            case 1:
+                ordenarEmpleados(vec,tam);
+                mostrarEmpleados(vec,tam);
+                system("pause");
+            break;
+
+            case 2:
+
+                for(int i=0; i<tam; i++)
+                {
+                    if(vec[i].ocupado==1)
+                    {
+                        acumuladorSueldo+=vec[i].sueldo;
+                        contSueldo++;
+                    }
+                }
+
+                promedioSueldo=acumuladorSueldo/contSueldo;
+
+                for(int i=0; i<tam; i++)
+                {
+                    if(vec[i].ocupado==1 && vec[i].sueldo>promedioSueldo)
+                    {
+                        contEmpleados++;
+                    }
+                }
+
+                printf("\nEl total de los salarios es de %.2f",acumuladorSueldo);
+                printf("\nEl promedio de los sueldos es de: %.2f",promedioSueldo);
+                printf("\nEl total de empleados que superan el sueldo promedio es de: %d\n\n",contSueldo);
+                system("pause");
+
+            break;
+
+            case 3:
+                menuABM();
+            break;
+
+            default:
+                printf("No se ha ingresado una opcion valida.\n\n");
+        }
+
+    }while(opcion!=3);
+
+
+}
+

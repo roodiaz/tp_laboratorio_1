@@ -19,3 +19,23 @@
 
 1557120000 c:\users\rocio\desktop\tp2.\arrayemployees.h
 
+1557128044 source:c:\users\rocio\desktop\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	<time.h>
+	"ArrayEmployees.h"
+
+1557125721 c:\users\rocio\desktop\tp2\arrayemployees.h
+
+1557127946 source:c:\users\rocio\desktop\tp2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	<time.h>
+	"ArrayEmployees.h"
+

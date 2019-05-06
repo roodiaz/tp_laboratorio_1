@@ -93,5 +93,12 @@ void modificacionEmpleado(eEmpleado vec[], int tam);
  */
  void ordenarEmpleados(eEmpleado vec[], int tam);
 
- void informacionEmpleados(eEmpleado vec[], int tam);
+/** \brief muestra lista ordenada y informacion de sueldos
+ *
+ * \param Ingresar vector
+ * \param Ingresar tamaño del vector
+ * \return nada
+ *
+ */
+void informacionEmpleados(eEmpleado vec[], int tam);
 

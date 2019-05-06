@@ -25,7 +25,7 @@ int menuABM()
 
 void mostrarEmpleado(eEmpleado empleado)
 {
-    printf("%5d  %10s  %10s  %11.2f  %7d\n", empleado.id, empleado.nombre, empleado.apellido, empleado.sueldo, empleado.sector);
+    printf("\n%5d  %10s  %10s  %11.2f  %7d\n", empleado.id, empleado.nombre, empleado.apellido, empleado.sueldo, empleado.sector);
 }
 
 void mostrarEmpleados(eEmpleado vec[], int tam)
@@ -238,7 +238,7 @@ void modificacionEmpleado(eEmpleado vec[], int tam)
     char nuevoApellido[51];
     char auxChar[100];
 
-    printf("Ingrese id: ");
+    printf("\nIngrese id: ");
     scanf("%d", &id);
 
     indice = buscarEmpleado(vec, tam, id);
@@ -247,33 +247,31 @@ void modificacionEmpleado(eEmpleado vec[], int tam)
     {
         printf ("\nEl id %d no esta registrado en el sistema\n\n", id);
         system("pause");
+        menuABM();
     }
     else
     {
-        mostrarEmpleado(vec[indice]);
-
-        printf("\nDesea modificar empleado? s/n: ");
-        fflush(stdin);
+        printf ("\nDesea modificar empleado? s/n: ");
+        fflush (stdin);
         confirma = tolower(getche());
+    }
+    if(confirma=='n')
+    {
+        menuABM();
+    }
 
-        if(confirma == 's')
-        {
+    while(confirma=='s')
+    {
             system("cls");
             printf(">>>> Ingrese opcion que desee modificar <<<<\n\n");
 
-            printf("  1_ Nombre.\n");
-            printf("  2_ Apellido.\n");
-            printf("  3_ Salario.\n");
-            printf("  4_ Sector.\n");
-            printf("  5_ Atras.\n");
-            printf("\n\nOpcion: ");
+            printf("    1_ Nombre.\n");
+            printf("    2_ Apellido.\n");
+            printf("    3_ Salario.\n");
+            printf("    4_ Sector.\n\n");
+            printf("    5_ Volver al menu principal.\n");
+            printf("\n\n>>>> Opcion: ");
             scanf("%d",&opcion);
-        }
-        else
-        {
-            printf("No se ha realizado ninguna modificacion.\n");
-            system("pause");
-        }
 
         switch(opcion)
         {
@@ -384,20 +382,16 @@ void ordenarEmpleados(eEmpleado vec[], int tam)
                 vec[i]=vec[j];
                 vec[j]=aux;
             }
-        }
-
-         for(int i=0; i<tam-1; i++)
+            else
             {
-                for(int j=i+1; j<tam; j++)
+                if(vec[i].sector==vec[j].sector && (stricmp(vec[i].apellido, vec[j].apellido))>0)
                 {
-                    if(vec[i].sector==vec[j].sector && vec[i].apellido>vec[j].apellido)
-                    {
-                        aux=vec[i];
-                        vec[i]=vec[j];
-                        vec[j]=aux;
-                    }
+                    aux=vec[i];
+                    vec[i]=vec[j];
+                    vec[j]=aux;
                 }
             }
+        }
     }
 }
 

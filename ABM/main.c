@@ -1,13 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
-#include <conio.h>
-#include <string.h>
-#include <time.h>
 #include "ArrayEmployees.h"
 
 #define TAM 1000
-
 
 int main()
 {
@@ -63,19 +58,13 @@ int main()
             case 5:
                 printf("\nDesea salir?s/n: ");
                 fflush(stdin);
-                salir = tolower(getche());
-
-                if(salir != 's' || salir != 'n')
-                {
-                    printf("No es una opcion valida. Ingrese s/n: ");
-                    fflush(stdin);
-                    salir = tolower(getche());
-                }
+                scanf("%c",&salir);
             break;
 
             default:
                 printf("\n\nNo se ha ingresado una opcion valida!!!!.\n\n");
                 system("pause");
+                menuABM();
         }
 
     }while(salir == 'n');

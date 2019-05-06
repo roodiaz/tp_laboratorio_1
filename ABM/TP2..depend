@@ -39,18 +39,14 @@
 	<time.h>
 	"ArrayEmployees.h"
 
-1557128075 source:c:\users\rocio\desktop\tp_laboratorio_1\abm\main.c
+1557134501 source:c:\users\rocio\desktop\tp_laboratorio_1\abm\main.c
 	<stdio.h>
 	<stdlib.h>
-	<ctype.h>
-	<conio.h>
-	<string.h>
-	<time.h>
 	"ArrayEmployees.h"
 
-1557125721 c:\users\rocio\desktop\tp_laboratorio_1\abm\arrayemployees.h
+1557134444 c:\users\rocio\desktop\tp_laboratorio_1\abm\arrayemployees.h
 
-1557130027 source:c:\users\rocio\desktop\tp_laboratorio_1\abm\arrayemployees.c
+1557136037 source:c:\users\rocio\desktop\tp_laboratorio_1\abm\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>

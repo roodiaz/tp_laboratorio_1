@@ -11,13 +11,9 @@
 
 int main()
 {
-
-    char salir = 'n';
-    int flag = 0;
-
     eEmpleado lista[TAM];
-    inicializarEmpleados(lista,TAM);
-
+    float flag=0;
+    char salir = 'n';
 
     do
     {
@@ -25,53 +21,27 @@ int main()
         {
             case 1:
                 altaEmpleado(lista, TAM);
-                flag=1;
+                flag =1;
             break;
 
             case 2:
-                if(flag == 0)
-                {
-                    printf("Primero debe dar de alta algun empleado.\n");
-                }
-                else
-                {
-                    modificacionEmpleado(lista, TAM);
-                }
             break;
 
             case 3:
                 if(flag == 0)
                 {
                     printf("Primero debe dar de alta algun empleado.\n");
+                    system("pause");
                 }
                 else
                 {
                     bajaEmpleado(lista, TAM);
                 }
             break;
-
-            case 4:
-
-            break;
-
-            case 5:
-                printf("\nDesea salir? s/n");
-                fflush(stdin);
-                salir = tolower(getche());
-
-                if(salir != 's' || salir != 'n')
-                {
-                    printf("No es una opcion valida. Ingrese s/n: ");
-                    fflush(stdin);
-                    salir = tolower(getche());
-                }
-            break;
-
         }
 
     }while(salir == 'n');
 
+
     return 0;
 }
-
-

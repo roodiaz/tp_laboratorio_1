@@ -18,17 +18,6 @@ typedef struct
  */
 int menuABM();
 
-
-/** \brief Pone a todos los empleados en estado 0
- *
- * \param Ingresar vector
- * \param Ingresar tamaño del vector
- * \return Nada
- *
- */
-void inicializarEmpleados(eEmpleado vec[], int tam);
-
-
 /** \brief Busca espacio libre para dar de alta empleado
  *
  * \param Ingresar vector
@@ -67,6 +56,7 @@ void altaEmpleado(eEmpleado vec[], int tam);
  */
 void mostrarEmpleado(eEmpleado empleado);
 
+void mostrarEmpleados(eEmpleado vec[], int tam);
 
 /** \brief Opciones para dar de baja un empleado
  *
@@ -83,5 +73,4 @@ void mostrarEmpleado(eEmpleado empleado);
   * \return Nada
   *
   */
-  void modificacionEmpleado(eEmpleado vec[], int tam);
-
+void modificacionEmpleado(eEmpleado vec[], int tam);

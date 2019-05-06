@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1557121092 source:c:\users\rocio\desktop\tp2.\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	<time.h>
+	"ArrayEmployees.h"
+
+1557121250 source:c:\users\rocio\desktop\tp2.\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	<time.h>
+	"ArrayEmployees.h"
+
+1557120000 c:\users\rocio\desktop\tp2.\arrayemployees.h
+

@@ -6,7 +6,6 @@
 #include <time.h>
 #include "ArrayEmployees.h"
 
-
 int menuABM()
 {
     int opcion;
@@ -24,19 +23,40 @@ int menuABM()
     scanf("%d",&opcion);
 
     return opcion;
-
 }
 
-void inicializarEmpleados(eEmpleado vec[], int tam)
+void mostrarEmpleado(eEmpleado empleado)
 {
+    printf("\n%d  %10s  %10s   %.2f    %d\n", empleado.id, empleado.nombre, empleado.apellido, empleado.sueldo, empleado.sector);
+}
+
+void mostrarEmpleados(eEmpleado vec[], int tam)
+{
+    int contador = 0;
+
+    system("cls");
+
+    printf("   ID        Nombre     Apellido    Sueldo    Sector\n\n");
+
     for(int i=0; i < tam; i++)
     {
-        vec[i].ocupado = 0;
+        if(vec[i].ocupado == 1)
+        {
+            mostrarEmpleado(vec[i]);
+            contador++;
+        }
+    }
+    printf("\n\n");
+
+    if( contador == 0)
+    {
+        printf("\nNo hay empleados que mostrar\n");
     }
 }
 
 int buscarLibre(eEmpleado vec[], int tam)
 {
+
     int indice = -1;
 
     for(int i=0; i < tam; i++)
@@ -58,7 +78,7 @@ int buscarEmpleado(eEmpleado vec[], int tam, int id)
 
     for(int i=0; i < tam; i++)
     {
-        if(vec[i].id == 1 && vec[i].id == id)
+        if(vec[i].ocupado == 1 && vec[i].id == id)
         {
             indice = i;
             break;
@@ -69,35 +89,36 @@ int buscarEmpleado(eEmpleado vec[], int tam, int id)
 
 void altaEmpleado(eEmpleado vec[], int tam)
 {
-   int indice;
-   int aleatorio;
-   int usado;
-   char auxChar[100];
 
-   indice = buscarLibre(vec,tam);
+    int indice;
+    int id;
+    int ocupado;
+    char auxChar[100];
 
-   if(indice == -1)
-   {
-       printf("No hay lugar para dar de alta.\n");
-   }
+    indice = buscarLibre(vec, tam);
 
-   else
-   {
+    if( indice == -1)
+    {
+        printf("\nNo hay lugar en el sistema\n");
+        system("pause");
+    }
+    else
+    {
         srand(time(NULL));
-        aleatorio = 1000 + rand() % (10000 - 1000);
+        id = 1000 + rand() % (10000 - 1000);
 
-        usado = buscarEmpleado(vec, tam, aleatorio);
+        ocupado = buscarEmpleado(vec, tam, id);
 
-        while(usado != -1)
+        if( ocupado != -1)
         {
             srand(time(NULL));
-            aleatorio = 1000 + rand() % (10000 - 1000);
+            id = 1000 + rand() % (10000 - 1000);
         }
-
-        if(usado == -1)
+        else
         {
-            vec[indice].id = aleatorio;
-            printf("\nId: %d\n",aleatorio);
+            vec[indice].id = id;
+
+            printf("\nId: %d\n",id);
 
             printf("Ingresar nombre: ");
             fflush(stdin);
@@ -158,179 +179,50 @@ void altaEmpleado(eEmpleado vec[], int tam)
 
             printf("\nAlta empleado realizada con exito.\n\n");
             system("pause");
+
         }
-   }
+    }
 }
 
-void mostrarEmpleado(eEmpleado empleado)
+void bajaEmpleado(eEmpleado vec[], int tam)
 {
-    printf("Id  Nombre  Apellido Sueldo Sector \n");
-    printf("%5d  10%s     10%s    10%2.f   5%d",empleado.id,empleado.nombre,empleado.apellido,empleado.sueldo,empleado.sector);
-}
-
-void bajaEmpleado(eEmpleado vec[], int tam){
-
     int id;
-    int esta;
+    int indice;
     char confirma;
 
-    printf("Ingrese Id: ");
-    scanf("%d", &id);
+    printf("\nIngrese el Id: ");
+    scanf("%d" ,&id);
 
-    esta = buscarEmpleado(vec, tam, id);
+    indice = buscarEmpleado (vec, tam, id);
 
-    if( esta == -1){
-
-        printf("\nEl id %d no esta registrado\n", id);
+    if (indice == -1)
+    {
+        printf ("El id %d no esta registrado en el sistema \n", id);
+        system("pause");
     }
-    else{
-        mostrarEmpleado(vec[esta]);
+    else
+    {
+        mostrarEmpleado (vec[indice]);
 
-        printf("\nConfirma la eliminacion? s/n");
+        printf ("\nDesea dar de baja al empleado? s/n: ");
         fflush(stdin);
-        confirma = tolower(getche());
+        confirma=tolower(getche());
 
-        if(confirma == 's'){
-            vec[esta].ocupado = 0;
+        if(confirma != 's' && confirma != 'n')
+        {
+            printf("No es una opcion valida. Ingrese s/n: ");
+            fflush(stdin);
+            confirma=tolower(getche());
         }
-        else{
-            printf("\nLa eliminacion ha sido cancelada\n");
-        }
-    }
-}
-
-void modificacionEmpleado(eEmpleado vec[], int tam)
-{
-
-    int id;
-    int nuevoSector;
-    int esta;
-    int opcion;
-    float nuevoSueldo;
-    char confirma;
-    char nuevoNombre[51];
-    char nuevoApellido[51];
-    char auxChar[100];
-
-    printf("Ingrese id: ");
-    scanf("%d", &id);
-
-    esta = buscarEmpleado(vec, tam, id);
-
-    if( esta == -1){
-
-        printf("\nEl id %d no esta registrado en el sistema\n", id);
-    }
-    else{
-        mostrarEmpleado(vec[esta]);
-
-        printf("\nDesea modificar empleado? s/n: ");
-        fflush(stdin);
-        confirma = tolower(getche());
 
         if(confirma == 's')
         {
-            system("cls");
-            printf(">>>> Ingrese opcion que desee modificar <<<<\n\n");
-
-            printf("  1_ Nombre.\n");
-            printf("  2_ Apellido.\n");
-            printf("  3_ Salario.\n");
-            printf("  4_ Sector.\n");
-            scanf("%d",&opcion);
+            vec[indice].ocupado = 0 ;
         }
         else
         {
-            printf("No se ha realizado ninguna modificacion.\n");
-        }
-
-        switch(opcion)
-        {
-            case 1:
-                printf("Ingresar nuevo nombre: ");
-                fflush(stdin);
-                scanf("%s", nuevoNombre);
-
-                while(strlen(auxChar)>50)
-                {
-                    printf("Error. Ingresar nombre del empleado: ");
-                    gets(auxChar);
-                }
-
-                strlwr(auxChar);
-                auxChar[0] = toupper(auxChar[0]);
-                strcpy(nuevoNombre, auxChar);
-                strcpy(vec[esta].nombre, nuevoNombre);
-
-                printf("Modificacion realizada con exito.\n\n");
-                system("pause");
-            break;
-
-            case 2:
-                printf("Ingresar nuevo apellido: ");
-                fflush(stdin);
-                gets(auxChar);
-
-                while(strlen(auxChar)>50)
-                {
-                    printf("Error. Ingresar apellido del empleado: ");
-                    gets(auxChar);
-                }
-
-                strlwr(auxChar);
-                auxChar[0] = toupper(auxChar[0]);
-                strcpy(nuevoApellido, auxChar);
-                strcpy(vec[esta].apellido, nuevoApellido);
-
-                printf("Modificacion realizada con exito.\n\n");
-                system("pause");
-            break;
-
-            case 3:
-                printf("Ingrese nuevo sueldo: ");
-                scanf("%f", &nuevoSueldo );
-
-                while(strlen(auxChar)>50)
-                {
-                    printf("Error. Ingrese sueldo mayor a 0: ");
-                    scanf("%f", &nuevoSueldo );
-                }
-
-                vec[esta].sueldo = nuevoSueldo;
-
-                printf("Modificacion realizada con exito.\n\n");
-                system("pause");
-            break;
-
-            case 5:
-                system("cls");
-                printf("\n** Sectores **\n");
-                printf("1. RRHH\n");
-                printf("2. Sistemas\n");
-                printf("3. Legales\n");
-                printf("4. Ventas\n");
-                printf("5. Compras\n\n");
-                printf("Ingrese numero de nuevo sector: ");
-                scanf("%d",&nuevoSector);
-
-                while(nuevoSector < 1 || nuevoSector > 5)
-                {
-                    printf("Error. Ingrese un sector valido: ");
-                    scanf("%d",&nuevoSector);
-                }
-
-                vec[esta].sector = nuevoSector;
-
-                printf("Modificacion realizada con exito.\n\n");
-                system("pause");
-            break;
-
-            default:
-                if(opcion > 5 || opcion < 0)
-                {
-                    printf("Ingrese opcion valida: ");
-                    scanf("%d",&opcion);
-                }
+            printf ("\nSe ha cancelado la operacion.\n\n" );
+            system("pause");
         }
     }
 }

@@ -55,3 +55,19 @@
 	<time.h>
 	"ArrayEmployees.h"
 
+1557376219 source:c:\users\rocio\desktop\tp_laboratorio_1\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayEmployees.h"
+
+1557376219 c:\users\rocio\desktop\tp_laboratorio_1\tp2\arrayemployees.h
+
+1557376286 source:c:\users\rocio\desktop\tp_laboratorio_1\tp2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	<time.h>
+	"ArrayEmployees.h"
+

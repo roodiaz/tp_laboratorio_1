@@ -259,8 +259,7 @@ void modificacionEmpleado(eEmpleado vec[], int tam)
     {
         menuABM();
     }
-
-    while(confirma=='s')
+    else if(confirma=='s')
     {
             system("cls");
             printf(">>>> Ingrese opcion que desee modificar <<<<\n\n");

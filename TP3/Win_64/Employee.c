@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
 
 Employee* employee_new()
 {
@@ -194,6 +195,25 @@ int menuModify()
 
 }
 
+int menuListar()
+{
+    int opcion;
+
+    system("cls");
+    printf("                    ###   Menu Listar   ###\n");
+    printf("--------------------------------------------------------\n\n");
+    printf("1_ Por Id\n");
+    printf("2_ Por nombre\n");
+    printf("3_ Por horas trabajadas\n");
+    printf("4_ Por sueldo\n");
+    printf("5_ Salir\n");
+
+    printf("\n\nINGRESE OPCION: ");
+    scanf("%d",&opcion);
+
+    return opcion;
+}
+
 int listarEmployee(Employee* this)
 {
     int estado=0;
@@ -206,3 +226,118 @@ int listarEmployee(Employee* this)
 
     return estado;
 }
+
+int ordenarPorNombre(void* employee1, void* employee2)
+{
+    int estado=0;
+    Employee* emp1;
+    Employee* emp2;
+
+    if(employee1 != NULL && employee2 != NULL)
+    {
+        emp1 = (Employee*)employee1;
+        emp2 = (Employee*)employee2;
+
+        if(strcmp(emp1->nombre,emp2->nombre)>0)
+        {
+            estado=1;
+        }
+        else if(strcmp(emp1->nombre,emp2->nombre)<0)
+        {
+            estado=-1;
+        }
+        else
+        {
+            estado=0;
+        }
+    }
+    return estado;
+}
+
+int ordenarPorSueldo(void* employee1, void* employee2)
+{
+    int estado=0;
+    Employee* emp1;
+    Employee* emp2;
+
+    if(employee1 != NULL && employee2 !=NULL)
+    {
+        emp1 = (Employee*)employee1;
+        emp2 = (Employee*)employee2;
+
+        if(emp1->sueldo > emp2->sueldo)
+        {
+            estado = 1;
+        }
+        else if(emp1->sueldo < emp2->sueldo)
+        {
+            estado = -1;
+        }
+        else
+        {
+            estado = 0;
+        }
+
+    }
+
+    return estado;
+}
+
+int ordenarPorHoras(void* employee1, void* employee2)
+{
+    int estado=0;
+    Employee* emp1;
+    Employee* emp2;
+
+    if(employee1 != NULL && employee2 !=NULL)
+    {
+        emp1 = (Employee*)employee1;
+        emp2 = (Employee*)employee2;
+
+        if(emp1->horasTrabajadas > emp2->horasTrabajadas)
+        {
+            estado = 1;
+        }
+        else if(emp1->horasTrabajadas < emp2->horasTrabajadas)
+        {
+            estado = -1;
+        }
+        else
+        {
+            estado = 0;
+        }
+
+    }
+
+    return estado;
+}
+
+int ordenarPorId(void* employee1, void* employee2)
+{
+    int estado=0;
+    Employee* emp1;
+    Employee* emp2;
+
+    if(employee1 != NULL && employee2 !=NULL)
+    {
+        emp1 = (Employee*)employee1;
+        emp2 = (Employee*)employee2;
+
+        if(emp1->id > emp2->id)
+        {
+            estado = 1;
+        }
+        else if(emp1->id < emp2->id)
+        {
+            estado = -1;
+        }
+        else
+        {
+            estado=0;
+        }
+    }
+
+    return estado;
+}
+
+

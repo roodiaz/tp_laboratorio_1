@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
@@ -105,18 +106,18 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
         if(this != NULL)
         {
             if( employee_setId(this,auxId) == 1 &&
-                employee_setNombre(this,auxChar) == 1 &&
-                employee_setHorasTrabajadas(this,auxHoras) == 1 &&
-                employee_setSueldo(this,auxSueldo) == 1 )
-                {
-                    ll_add(pArrayListEmployee,this);
-                    estado=1;
-                }
-                else
-                {
-                    estado=0;
-                    exit(1);
-                }
+                    employee_setNombre(this,auxChar) == 1 &&
+                    employee_setHorasTrabajadas(this,auxHoras) == 1 &&
+                    employee_setSueldo(this,auxSueldo) == 1 )
+            {
+                ll_add(pArrayListEmployee,this);
+                estado=1;
+            }
+            else
+            {
+                estado=0;
+                exit(1);
+            }
         }
 
     }
@@ -190,7 +191,8 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                         printf("Opcion invalida\n");
                         break;
                     }
-                }while(salir != 's');
+                }
+                while(salir != 's');
 
             }
         }
@@ -295,8 +297,55 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int estado=0;
+
+    if(pArrayListEmployee != NULL)
+    {
+        system("cls");
+
+        switch(menuListar())
+        {
+        case 1:
+            if(ll_sort(pArrayListEmployee, ordenarPorId, 1)==1)
+            {
+                estado=1;
+            }
+            system("pause");
+            break;
+        case 2:
+            if(ll_sort(pArrayListEmployee, ordenarPorNombre, 1)==1)
+            {
+                estado=1;
+            }
+            system("pause");
+            break;
+        case 3:
+            if(ll_sort(pArrayListEmployee, ordenarPorHoras, 1)==1)
+            {
+                estado=1;
+            }
+            system("pause");
+            break;
+        case 4:
+            if(ll_sort(pArrayListEmployee, ordenarPorSueldo, 1)==1)
+            {
+                estado=1;
+            }
+            system("pause");
+            break;
+        case 5:
+            menu();
+            break;
+        default:
+            printf("Opcion invalida\n");
+            system("pause");
+            break;
+        }
+    }
+
+    return estado;
 }
+
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
  *
@@ -307,7 +356,43 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int len;
+    int i;
+    int estado=0;
+    FILE* f;
+    Employee* emp;
+
+    if(path != NULL && pArrayListEmployee != NULL)
+    {
+        f=fopen(path,"w");
+        len=ll_len(pArrayListEmployee);
+
+        if(f != NULL)
+        {
+            for(i=0; i<len; i++)
+            {
+                emp = (Employee*)ll_get(pArrayListEmployee, i);
+                fprintf(f, "%d,%s,%d,%d\n", emp->id, emp->nombre, emp->horasTrabajadas, emp->sueldo);
+            }
+
+            fclose(f);
+
+            if(i == len)
+            {
+                estado=1;
+            }
+            else
+            {
+                estado=0;
+            }
+        }
+        else
+        {
+            estado=0;
+        }
+    }
+
+    return estado;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
@@ -319,6 +404,42 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
-    return 1;
+     int len;
+    int i;
+    int estado=0;
+    FILE* f;
+    Employee* emp;
+
+    if(path != NULL && pArrayListEmployee != NULL)
+    {
+        f=fopen(path,"wb");
+        len=ll_len(pArrayListEmployee);
+
+        if(f != NULL)
+        {
+            for(i=0; i<len; i++)
+            {
+                emp = (Employee*)ll_get(pArrayListEmployee, i);
+                fwrite(emp,sizeof(Employee),1,f);
+            }
+
+            fclose(f);
+
+            if(i == len)
+            {
+                estado=1;
+            }
+            else
+            {
+                estado=0;
+            }
+        }
+        else
+        {
+            estado=0;
+        }
+    }
+
+    return estado;
 }
 

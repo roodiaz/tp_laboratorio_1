@@ -25,5 +25,14 @@ int employee_setSueldo(Employee* this,int sueldo);
 int employee_getSueldo(Employee* this,int* sueldo);
 
 void mostrarEmployee(Employee* emp);
+int listarEmployee(Employee* this);
+int menu();
+int menuModify();
+int menuListar();
+
+int ordenarPorId(void* employee1, void* employee2);
+int ordenarPorHoras(void* employee1, void* employee2);
+int ordenarPorSueldo(void* employee1, void* employee2);
+int ordenarPorNombre(void* employee1, void* employee2);
 
 #endif // employee_H_INCLUDED

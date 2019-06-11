@@ -26,6 +26,7 @@ int main()
 {
     LinkedList* listEmp = ll_newLinkedList();
     char salir;
+    int flag=0;
 
     do
     {
@@ -105,16 +106,80 @@ int main()
             system("pause");
             break;
         case 7:
+            if(ll_isEmpty(listEmp)!=1)
+            {
+                if(controller_sortEmployee(listEmp)==1)
+                {
+                    printf("Se ordeno la lista con exito.\n\n");
+                }
+                else if(controller_sortEmployee(listEmp)==0)
+                {
+                    printf("Error al ordenar la lista.\n\n");
+                }
+                else
+                {
+                    printf("No se han realizado cambios.\n\n");
+                }
+            }
+            else
+            {
+                printf("No hay empleados cargados en el sistema.\n\n");
+            }
+            system("pause");
             break;
         case 8:
+            if(ll_isEmpty(listEmp)!=1)
+            {
+                if(controller_saveAsText("data.csv",listEmp)==1)
+                {
+                    printf("\nDatos guardados con exito.\n\n");
+                    flag=1;
+                }
+                else
+                {
+                    printf("\nError al guardar archivo.\n\n");
+                }
+            }
+            else
+            {
+                printf("No hay empleados cargados en el sistema.\n\n");
+            }
+            system("pause");
             break;
         case 9:
+             if(ll_isEmpty(listEmp)!=1)
+            {
+                if(controller_saveAsText("data.bin",listEmp)==1)
+                {
+                    printf("\nDatos guardados con exito.\n\n");
+                    flag=1;
+                }
+                else
+                {
+                    printf("\nError al guardar archivo.\n\n");
+                }
+            }
+            else
+            {
+                printf("No hay empleados cargados en el sistema.\n\n");
+            }
+            system("pause");
             break;
         case 10:
-            printf("\nDesea salir? s/n: ");
-            fflush(stdin);
-            scanf("%c",&salir);
-            salir=tolower(salir);
+            if(flag == 0)
+            {
+                printf("\nNo se han guardado los datos, desea salir de todas formas? s/n: ");
+                fflush(stdin);
+                scanf("%c",&salir);
+                salir=tolower(salir);
+            }
+            else
+            {
+                printf("Desea salir? s/n: ");
+                fflush(stdin);
+                scanf("%c",&salir);
+                salir=tolower(salir);
+            }
             break;
         default:
             printf("Opcion invalida\n");
@@ -123,6 +188,7 @@ int main()
         }
     }
     while(salir != 's');
+
     return 0;
 }
 

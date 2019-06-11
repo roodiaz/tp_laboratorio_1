@@ -125,8 +125,6 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 }
 
 
-
-
 /** \brief Modificar datos de empleado
  *
  * \param path char*
@@ -136,7 +134,68 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int auxId;
+    int auxSueldo;
+    int auxHoras;
+    int len;
+    int estado=0;
+    char salir;
+    char auxChar[50];
+    Employee *this;
+
+    if(pArrayListEmployee != NULL)
+    {
+        len = ll_len(pArrayListEmployee);
+        obtenerNumeroEntre(&auxId, 99999, 0,"Ingresar id del empleado: ");
+        system("cls");
+
+        for( int i = 0; i <len ; i++ )
+        {
+            this = (Employee*)ll_get(pArrayListEmployee, i);
+
+            if( auxId == this->id )
+            {
+                do
+                {
+                    switch(menuModify())
+                    {
+                    case 1:
+                        obtenerCadenaChar(auxChar, 128, "Ingrese nombre: ");
+                        if(employee_setNombre(this,auxChar)==1)
+                        {
+                            estado=1;
+                        }
+                        break;
+                    case 2:
+                        obtenerNumeroEntre(&auxHoras,1000,0,"Ingresar horas trabajadas: ");
+                        if(employee_setHorasTrabajadas(this, auxHoras)==1)
+                        {
+                            estado=1;
+                        }
+                        break;
+                    case 3:
+                        obtenerNumeroEntre(&auxSueldo,500000,0,"Ingresar sueldo del empleado: ");
+                        if(employee_setSueldo(this, auxSueldo)==1)
+                        {
+                            estado=1;
+                        }
+                        break;
+                    case 4:
+                        printf("\nDesea salir? s/n: ");
+                        fflush(stdin);
+                        scanf("%c",&salir);
+                        salir=tolower(salir);
+                        break;
+                    default:
+                        printf("Opcion invalida\n");
+                        break;
+                    }
+                }while(salir != 's');
+
+            }
+        }
+    }
+    return estado;
 }
 
 /** \brief Baja de empleado
@@ -148,7 +207,47 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+
+    Employee* this;
+    int len;
+    int auxId;
+    int estado=0;
+    char confirma;
+
+    if(pArrayListEmployee !=NULL)
+    {
+        len=ll_len(pArrayListEmployee);
+        obtenerNumeroEntre(&auxId, 99999, 0,"Ingresar id del empleado: ");
+
+        for(int i=0; i<len; i++)
+        {
+            this = (Employee*)ll_get(pArrayListEmployee, i);
+
+            if(this->id == auxId)
+            {
+                printf("\nSeguro desea dar de baja el empleado? s/n: ");
+                fflush(stdin);
+                scanf("%c",&confirma);
+                confirma=tolower(confirma);
+
+                if(confirma=='s')
+                {
+                    ll_remove(pArrayListEmployee, i);
+                    printf("Empleado dado de baja con exito!\n");
+                    employee_delete(this);
+                    estado=1;
+                    break;
+                }
+                else
+                {
+                    printf("Operacion cancelada!!\n");
+                }
+
+            }
+        }
+    }
+
+    return estado;
 }
 
 /** \brief Listar empleados
@@ -160,7 +259,31 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+
+    int estado=0;
+    int len;
+    Employee* auxEmployee;
+
+    if(pArrayListEmployee != NULL)
+    {
+        len=ll_len(pArrayListEmployee);
+
+        if(len > 0)
+        {
+            printf("\n\nID     NOMBRE   HORAS TRABAJADAS   SUELDO\n\n");
+
+            for(int i=0; i<len; i++)
+            {
+                auxEmployee=(Employee*)ll_get(pArrayListEmployee,i);
+                listarEmployee(auxEmployee);
+                estado=1;
+            }
+        }
+
+    }
+    printf("\n\n");
+
+    return estado  ;
 }
 
 /** \brief Ordenar empleados

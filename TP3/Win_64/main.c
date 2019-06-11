@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "LinkedList.h"
 #include "Controller.h"
 #include "Employee.h"
@@ -23,7 +25,7 @@ int menu();
 int main()
 {
     LinkedList* listEmp = ll_newLinkedList();
-    int opcion=0;
+    char salir;
 
     do
     {
@@ -53,20 +55,54 @@ int main()
             break;
         case 3:
             if(controller_addEmployee(listEmp)==1)
+            {
+                printf("\nEmpleado dado de alta con exito.\n\n");
+            }
+            else
+            {
+                printf("\nError al ingresar el empleado.\n\n");
+            }
+            system("pause");
+            break;
+        case 4:
+            if(controller_editEmployee(listEmp)==1)
+            {
+                printf("\nEmpleado modificado con exito.\n\n");
+            }
+            else
+            {
+                printf("Error al modificar empleado.\n\n");
+            }
+            system("pause");
+            break;
+        case 5:
+            if(ll_isEmpty(listEmp)!=1)
+            {
+                if(controller_removeEmployee(listEmp)==1)
                 {
-                    printf("\nEmpleado dado de alta con exito!!!\n\n");
+                    printf("Empleado dado de baja con exito.\n\n");
                 }
                 else
                 {
-                    printf("\nError al ingresar el empleado.\n\n");
+                    printf("Error al dar de baja.\n\n");
                 }
-                system("pause");
-            break;
-        case 4:
-            break;
-        case 5:
+            }
+            else
+            {
+                printf("No hay empleados cargados en el sistema.\n\n");
+            }
+            system("pause");
             break;
         case 6:
+            if(ll_isEmpty(listEmp)!=1)
+            {
+                controller_ListEmployee(listEmp);
+            }
+            else
+            {
+                printf("No hay empleados cargados en el sistema.\n\n");
+            }
+            system("pause");
             break;
         case 7:
             break;
@@ -75,38 +111,21 @@ int main()
         case 9:
             break;
         case 10:
+            printf("\nDesea salir? s/n: ");
+            fflush(stdin);
+            scanf("%c",&salir);
+            salir=tolower(salir);
+            break;
+        default:
+            printf("Opcion invalida\n");
             break;
 
         }
     }
-    while(opcion != 10);
+    while(salir != 's');
     return 0;
 }
 
 
-int menu()
-{
-    int opcion;
-
-    system("cls");
-    printf("                    ###   Menu   ###\n");
-    printf("--------------------------------------------------------\n\n");
-    printf("1_ Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
-    printf("2_ Cargar los datos de los empleados desde el archivo data.bin (modo binario).\n");
-    printf("3_ Alta de empleado\n");
-    printf("4_ Modificar datos de empleado\n");
-    printf("5_ Baja de empleado\n");
-    printf("6_ Listar empleados\n");
-    printf("7_ Ordenar empleados\n");
-    printf("8_ Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
-    printf("9_ Guardar los datos de los empleados en el archivo data.bin (modo binario).\n");
-    printf("10_ Salir\n\n");
-
-    printf("INGRESE OPCION: ");
-    scanf("%d",&opcion);
-
-    return opcion;
-
-}
 
 

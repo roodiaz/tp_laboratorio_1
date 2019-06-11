@@ -149,3 +149,60 @@ void mostrarEmployee(Employee* emp)
 {
     printf("%d  %s  %d  %d\n",emp->id,emp->nombre,emp->horasTrabajadas,emp->sueldo);
 }
+
+int menu()
+{
+    int opcion;
+
+    system("cls");
+    printf("                    ###   Menu   ###\n");
+    printf("--------------------------------------------------------\n\n");
+    printf("1_ Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
+    printf("2_ Cargar los datos de los empleados desde el archivo data.bin (modo binario).\n");
+    printf("3_ Alta de empleado\n");
+    printf("4_ Modificar datos de empleado\n");
+    printf("5_ Baja de empleado\n");
+    printf("6_ Listar empleados\n");
+    printf("7_ Ordenar empleados\n");
+    printf("8_ Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
+    printf("9_ Guardar los datos de los empleados en el archivo data.bin (modo binario).\n");
+    printf("10_ Salir\n\n");
+
+    printf("INGRESE OPCION: ");
+    scanf("%d",&opcion);
+
+    return opcion;
+
+}
+
+int menuModify()
+{
+    int opcion;
+
+    system("cls");
+    printf("                    ###   Menu Modificacion   ###\n");
+    printf("--------------------------------------------------------\n\n");
+    printf("1_ Modificar nombre\n");
+    printf("2_ Modificar horas trabajadas\n");
+    printf("3_ EModificar sueldo\n");
+    printf("4_ Salir\n");
+
+    printf("\n\nINGRESE OPCION: ");
+    scanf("%d",&opcion);
+
+    return opcion;
+
+}
+
+int listarEmployee(Employee* this)
+{
+    int estado=0;
+
+    if(this != NULL)
+    {
+        printf("%d %10s %10d %15d\n", this->id, this->nombre, this->horasTrabajadas, this->sueldo);
+        estado=1;
+    }
+
+    return estado;
+}

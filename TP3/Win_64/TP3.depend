@@ -128,3 +128,50 @@
 
 1557452155 c:\users\rocio\desktop\programacion-1\tp3\win_64\inputdiaz.h
 
+1560225452 source:c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"inputDiaz.h"
+
+1560218060 c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\linkedlist.h
+
+1560218060 c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\employee.h
+
+1560218060 c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\parser.h
+
+1557452155 c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\inputdiaz.h
+
+1560225498 source:c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\employee.c
+	"Employee.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1560224185 source:c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\inputdiaz.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<string.h>
+	"inputDiaz.h"
+
+1560225388 source:c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1560218060 c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\controller.h
+
+1560222290 source:c:\users\rocio\downloads\tp_laboratorio_1\tp3\win_64\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+

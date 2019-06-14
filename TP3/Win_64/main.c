@@ -27,6 +27,8 @@ int main()
     LinkedList* listEmp = ll_newLinkedList();
     char salir;
     int flag=0;
+    int chargeBin=0;
+    int chargeTxt=0;
 
     do
     {
@@ -36,6 +38,7 @@ int main()
             if(controller_loadFromText("data.csv",listEmp) == 1)
             {
                 printf("Archivo cargado correctamente.\n\n");
+                chargeTxt=1;
             }
             else
             {
@@ -47,6 +50,7 @@ int main()
             if(controller_loadFromBinary("data.bin",listEmp) == 1)
             {
                 printf("Archivo cargado correctamente.\n\n");
+                chargeBin=1;
             }
             else
             {
@@ -106,7 +110,7 @@ int main()
             system("pause");
             break;
         case 7:
-            if(ll_isEmpty(listEmp)!=1)
+            if(chargeBin == 1 || chargeTxt == 1)
             {
                 if(controller_sortEmployee(listEmp)==1)
                 {
@@ -149,7 +153,7 @@ int main()
         case 9:
              if(ll_isEmpty(listEmp)!=1)
             {
-                if(controller_saveAsText("data.bin",listEmp)==1)
+                if(controller_saveAsBinary("data.bin",listEmp)==1)
                 {
                     printf("\nDatos guardados con exito.\n\n");
                     flag=1;

@@ -87,12 +87,11 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     int auxSueldo;
     int auxId;
     int auxHoras;
-    char auxChar[50];
+    char *auxChar = (char*) malloc(sizeof(char)*31);
     Employee* this;
 
     if(pArrayListEmployee != NULL)
     {
-
         obtenerNumeroEntre(&auxId, 99999, 0,"Ingresar id del empleado: ");
 
         obtenerCadenaChar(auxChar, 128, "Ingrese nombre: ");
@@ -122,6 +121,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
     }
 
+    free(auxChar);
     return estado;
 }
 
@@ -141,7 +141,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
     int len;
     int estado=0;
     char salir;
-    char auxChar[50];
+    char *auxChar = (char*) malloc(sizeof(char)*31);
     Employee *this;
 
     if(pArrayListEmployee != NULL)

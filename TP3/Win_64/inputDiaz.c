@@ -67,7 +67,7 @@ int preguntarSiEstaSeguro(char mensaje[])
 
 void obtenerCadenaChar(char dondeAsginar[], int tamMax, char mensaje[])
 {
-    char auxChar[100];
+    char *auxChar = (char*) malloc(sizeof(char)*100);
     char letra;
 
 
@@ -91,6 +91,7 @@ void obtenerCadenaChar(char dondeAsginar[], int tamMax, char mensaje[])
         strlwr(auxChar);
         auxChar[0] = toupper(auxChar[0]);
         strcpy(dondeAsginar, auxChar);
+        free(auxChar);
     }
 }
 
@@ -100,7 +101,7 @@ void obtenerEmail(char dondeAsignar[], int tamMax, char mensaje [])
     int cantidadPuntos;
     int pusoArroba;
     int invalido;
-    char aux[tamMax];
+    char *aux = (char*) malloc(sizeof(char)*tamMax);
 
     do
     {
@@ -178,13 +179,13 @@ void obtenerEmail(char dondeAsignar[], int tamMax, char mensaje [])
     }
 
     strcpy(dondeAsignar, aux);
+    free(aux);
 }
 
 void obtenerTelefono(char dondeAsignar[], int tamMax, char mensaje[])
 {
-    char auxTel[100];
+    char *auxTel = (char*) malloc(sizeof(char)*100);
     char tel;
-
 
     printf("\n%s",mensaje);
     fflush(stdin);
@@ -205,6 +206,8 @@ void obtenerTelefono(char dondeAsignar[], int tamMax, char mensaje[])
 
         strcpy(dondeAsignar, auxTel);
     }
+
+    free(auxTel);
 }
 
 void obtenerSexo(char * dondeAsignar, char mensaje[])

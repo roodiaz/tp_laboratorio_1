@@ -334,6 +334,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
             system("pause");
             break;
         case 5:
+            estado=-1;
             menu();
             break;
         default:

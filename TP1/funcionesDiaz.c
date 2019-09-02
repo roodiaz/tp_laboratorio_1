@@ -34,14 +34,7 @@ float dividirDosNumeros (int x, int y)
 {
     float resto;
 
-    if( y == 0 )
-    {
-        printf("Error. No se puede dividir por 0.");
-    }
-    else
-    {
         resto =(float) x / y;
-    }
 
     return resto;
 }

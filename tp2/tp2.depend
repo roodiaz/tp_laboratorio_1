@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1569806814 source:c:\users\rocio\downloads\tp2\inputdiaz.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+
+1569806906 source:c:\users\rocio\downloads\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"inputDiaz.h"
+
+1569806814 c:\users\rocio\downloads\tp2\inputdiaz.h
+
+1569895456 source:c:\users\rocio\desktop\programacion-1\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"inputDiaz.h"
+
+1569806814 c:\users\rocio\desktop\programacion-1\tp2\inputdiaz.h
+
+1569806814 source:c:\users\rocio\desktop\programacion-1\tp2\inputdiaz.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+

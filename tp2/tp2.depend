@@ -29,3 +29,27 @@
 	<conio.h>
 	<ctype.h>
 
+1569806814 source:c:\users\rocio\desktop\tp_laboratorio_1\tp2\inputdiaz.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+
+1569897134 source:c:\users\rocio\desktop\tp_laboratorio_1\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"inputDiaz.h"
+
+1569806814 c:\users\rocio\desktop\tp_laboratorio_1\tp2\inputdiaz.h
+
+1569897641 source:c:\users\rocio\desktop\tp_laboratorio_1\tp2\arrayemployyes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"inputDiaz.h"
+	"arrayEmployyes.h"
+
+1569897641 c:\users\rocio\desktop\tp_laboratorio_1\tp2\arrayemployyes.h
+
